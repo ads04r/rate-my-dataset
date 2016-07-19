@@ -1,0 +1,6 @@
+[submodule "lib/graphite"]
+	path = lib/graphite
+	url = https://github.com/cgutteridge/Graphite.git
+[submodule "lib/arc2"]
+	path = lib/arc2
+	url = https://github.com/semsol/ARC2.git

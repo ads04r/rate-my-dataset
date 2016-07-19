@@ -1,5 +1,15 @@
 [
    {
+      "label" : "DCMI Metadata Terms",
+      "uri" : "http://purl.org/dc/terms/",
+      "prefix" : "dct"
+   },
+   {
+      "label" : "DCMI Metadata Elements",
+      "uri" : "http://purl.org/dc/elements/1.1/",
+      "prefix" : "dcelements"
+   },
+   {
       "label" : "Friend of a Friend (FOAF) vocabulary",
       "uri" : "http://xmlns.com/foaf/0.1/",
       "prefix" : "foaf"

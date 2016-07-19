@@ -1,0 +1,41 @@
+#!/usr/bin/php -q
+<?php
+
+$lib_path = dirname(dirname(__file__)) . "/lib/ratemydataset";
+$etc_path = dirname(dirname(__file__)) . "/etc";
+$var_path = dirname(dirname(__file__)) . "/var";
+$cfg = array();
+$dp = opendir($lib_path);
+while(false != ($file = readdir($dp)))
+{
+	if(preg_match("/\\.php$/", $file) == 0) { continue; }
+	include_once($lib_path . "/" . $file);
+}
+closedir($dp);
+$dp = opendir($etc_path);
+while(false != ($file = readdir($dp)))
+{
+	if(preg_match("/\\.json$/", $file) == 0) { continue; }
+	$key = preg_replace("/\\.json$/", "", $file);
+	$cfg[$key] = json_decode(file_get_contents($etc_path . "/" . $file), true);
+}
+closedir($dp);
+include_once(dirname(dirname(__file__)) . "/lib/arc2/ARC2.php");
+include_once(dirname(dirname(__file__)) . "/lib/graphite/Graphite.php");
+
+$c = count($argv);
+if($c < 2)
+{
+	error_log("Correct usage: rmd [dataset_uri]");
+}
+
+$g = new Graphite();
+for($i = 1; $i < $c; $i++)
+{
+	$g->load($argv[$i]);
+}
+
+$data = extract_metadata($g);
+$data['vocabularies'] = extract_vocabularies(array_merge($data['predicates'], $data['types']));
+
+var_dump($data);
