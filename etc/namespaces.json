@@ -1,0 +1,7 @@
+[
+   {
+      "label" : "Friend of a Friend (FOAF) vocabulary",
+      "uri" : "http://xmlns.com/foaf/0.1/",
+      "prefix" : "foaf"
+   }
+]
