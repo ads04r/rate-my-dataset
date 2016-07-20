@@ -1,7 +1,7 @@
 [
    {
-      "label" : "DCMI Metadata Terms",
       "uri" : "http://purl.org/dc/terms/",
+      "label" : "DCMI Metadata Terms",
       "prefix" : "dct"
    },
    {
@@ -13,5 +13,49 @@
       "label" : "Friend of a Friend (FOAF) vocabulary",
       "uri" : "http://xmlns.com/foaf/0.1/",
       "prefix" : "foaf"
+   },
+   {
+      "label" : "Vocabulary of Interlinked Datasets (VoID)",
+      "prefix" : "void",
+      "uri" : "http://rdfs.org/ns/void#"
+   },
+   {
+      "label" : "Buildings and Rooms Vocabulary",
+      "uri" : "http://vocab.deri.ie/rooms#",
+      "prefix" : "room"
+   },
+   {
+      "label" : "The OWL 2 Schema vocabulary (OWL 2)",
+      "prefix" : "owl",
+      "uri" : "http://www.w3.org/2002/07/owl#"
+   },
+   {
+      "label" : "Simple Knowledge Organization System (SKOS)",
+      "uri" : "http://www.w3.org/2004/02/skos/core#",
+      "prefix" : "skos"
+   },
+   {
+      "label" : "An OWL Ontology of Time (OWL-Time)",
+      "uri" : "http://www.w3.org/2006/time#",
+      "prefix" : "time"
+   },
+   {
+      "prefix" : "org",
+      "uri" : "http://www.w3.org/ns/org#",
+      "label" : "Core organization ontology"
+   },
+   {
+      "label" : "The PROV Ontology (PROV-O)",
+      "prefix" : "prov",
+      "uri" : "http://www.w3.org/ns/prov#"
+   },
+   {
+      "prefix" : "oo",
+      "uri" : "http://purl.org/openorg/"
+   },
+   {
+      "label" : "Academic Institution Internal Structure Ontology (AIISO)",
+      "uri" : "http://purl.org/vocab/aiiso/schema#",
+      "prefix" : "aiiso"
    }
 ]
