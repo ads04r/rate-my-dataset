@@ -38,4 +38,4 @@ for($i = 1; $i < $c; $i++)
 $data = extract_metadata($g);
 $data['vocabularies'] = extract_vocabularies(array_merge($data['predicates'], $data['types']));
 
-var_dump($data);
+print(json_encode($data));
