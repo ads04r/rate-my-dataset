@@ -72,3 +72,25 @@ function extract_vocabularies($uri_list)
 
 	return($prefixes);
 }
+
+function extract_classes($type_list)
+{
+	$ret = array();
+	foreach($type_list as $uri)
+	{
+		$g = new Graphite();
+		$g->load($uri);
+		$res = $g->resource($uri);
+		$label = "" . $res->label();
+		if(strcmp($label, "[NULL]") == 0)
+		{
+			$label = preg_replace("|^(.*)([/#])([^/#]+)$|", "$3", $uri);
+		}
+
+		$item = array();
+		$item['label'] = $label;
+		$item['uri'] = $uri;
+		$ret[] = $item;
+	}
+	return($ret);
+}
