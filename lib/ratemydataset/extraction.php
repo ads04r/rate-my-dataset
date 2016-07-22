@@ -7,6 +7,7 @@ function extract_metadata($g)
 
 	$subjects = array();
 	$predicates = array();
+	$objects = array();
 	$types = array();
 
 	foreach($g->allSubjects() as $res)
@@ -21,6 +22,17 @@ function extract_metadata($g)
 			if(in_array($uri, $predicates)) { continue; }
 
 			$predicates[] = $uri;
+			if(strcmp($uri, "http://www.w3.org/1999/02/22-rdf-syntax-ns#type") == 0) { continue; }
+			foreach($res->all($uri) as $obj)
+			{
+				$type = trim("" . $obj->datatype());
+				$obj_txt = trim("" . $obj);
+				if(strlen($type) > 0) { continue; }
+				if(in_array($obj_txt, $objects)) { continue; }
+				if(preg_match("/^([a-zA-Z]+)\\:/", $obj_txt) == 0) { continue; }
+
+				$objects[] = $obj_txt;
+			}
 		}
 	}
 
@@ -40,11 +52,13 @@ function extract_metadata($g)
 	sort($types);
 	sort($subjects);
 	sort($predicates);
+	sort($objects);
 
 	return(array(
 		"types" => $types,
 		"predicates" => $predicates,
-		"subjects" => $subjects
+		"subjects" => $subjects,
+		"objects" => $objects
 	));
 }
 
@@ -91,6 +105,22 @@ function extract_classes($type_list)
 		$item['label'] = $label;
 		$item['uri'] = $uri;
 		$ret[] = $item;
+	}
+	return($ret);
+}
+
+function extract_domains($objects)
+{
+	$ret = array();
+	foreach($objects as $uri)
+	{
+		$m = array();
+		if(preg_match("|://([^/]+)/|", $uri, $m) == 0) { continue; }
+
+		$domain = $m[1];
+		if(in_array($domain, $ret)) { continue; }
+
+		$ret[] = $domain;
 	}
 	return($ret);
 }
