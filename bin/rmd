@@ -35,9 +35,6 @@ for($i = 1; $i < $c; $i++)
 	$g->load($argv[$i]);
 }
 
-$data = extract_metadata($g);
-$data['vocabularies'] = extract_vocabularies(array_merge($data['predicates'], $data['types']));
-$data['classes'] = extract_classes($data['types']);
-$data['link_targets'] = extract_domains($data['objects']);
+$data = generate_rmd($g);
 
 print(json_encode($data));
